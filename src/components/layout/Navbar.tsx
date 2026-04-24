@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight, ChevronDown, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
@@ -248,15 +249,18 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Mobile trigger */}
+        {/* Mobile trigger — always-visible pill so the user can find it on any hero */}
         <button
-          className={`lg:hidden p-2 transition-colors ${onImage ? "text-white" : "text-primary"}`}
-          style={onImage ? { filter: "drop-shadow(0 1px 3px hsl(var(--primary) / 0.8))" } : undefined}
+          className={`lg:hidden relative inline-flex h-11 w-11 items-center justify-center rounded-full border transition-colors shadow-luxe-sm ${
+            onImage
+              ? "border-white/70 bg-primary/60 text-white backdrop-blur-md hover:bg-primary/80"
+              : "border-border/70 bg-background/90 text-primary backdrop-blur-md hover:border-gold hover:text-gold"
+          }`}
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
@@ -271,15 +275,17 @@ const Navbar = () => {
         />
       </div>
 
-      {/* Mobile drawer — slide-in from right, full panel.
-          Needs its OWN z-index above the header's inner stacking context
-          (the container has z-10) otherwise the drawer renders behind. */}
-      <div
-        aria-hidden={!open}
-        className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-500 ${
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      >
+      {/* Mobile drawer — rendered via portal onto document.body so it
+          escapes the header's stacking context entirely. Guarantees
+          the full-screen overlay always covers everything beneath. */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <div
+            aria-hidden={!open}
+            className={`fixed inset-0 z-[100] lg:hidden transition-opacity duration-500 ${
+              open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
+          >
         {/* Backdrop */}
         <div
           className="absolute inset-0 bg-primary/70 backdrop-blur-sm"
@@ -289,7 +295,8 @@ const Navbar = () => {
         <aside
           role="dialog"
           aria-label="Menu"
-          className={`absolute right-0 top-0 h-full w-[min(92vw,22rem)] bg-background border-l border-border/60 shadow-luxe-xl flex flex-col transition-transform duration-500 ${
+          style={{ backgroundColor: "hsl(var(--background))" }}
+          className={`absolute right-0 top-0 h-full w-[min(92vw,22rem)] border-l border-border/60 shadow-luxe-xl flex flex-col transition-transform duration-500 ${
             open ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -316,8 +323,12 @@ const Navbar = () => {
               {ALL_NAV.map((item, i) => (
                 <li
                   key={item.to}
-                  className="border-b border-border/40 last:border-b-0"
-                  style={{ animation: open ? `fade-in 0.5s ${i * 60}ms cubic-bezier(0.25,0.46,0.45,0.94) both` : undefined }}
+                  className="border-b border-border/40 last:border-b-0 transition-all duration-500"
+                  style={{
+                    opacity: open ? 1 : 0,
+                    transform: open ? "translateY(0)" : "translateY(8px)",
+                    transitionDelay: open ? `${i * 40}ms` : "0ms",
+                  }}
                 >
                   <NavLink
                     to={item.to}
@@ -360,7 +371,9 @@ const Navbar = () => {
             </Link>
           </div>
         </aside>
-      </div>
+      </div>,
+          document.body,
+        )}
     </header>
   );
 };
