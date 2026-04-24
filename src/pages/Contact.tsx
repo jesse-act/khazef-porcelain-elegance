@@ -3,6 +3,7 @@ import Seo from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import hero from "@/assets/safi-coast.jpg";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -21,13 +22,14 @@ const Contact = () => {
 
   return (
     <>
-      <Seo title="Contact" description="Réservez une visite privée de la résidence Khazef à Safi." />
+      <Seo title="Contact" description="Réservez une visite privée de la résidence Luxury Living à Safi." />
       <PageHeader
         eyebrow="Contact"
         arabic="تواصل"
         title="Une visite privée,"
         italicWord="sur simple demande."
-        intro="Notre conseiller vous accompagne dans la découverte de Khazef et la sélection de votre future adresse."
+        intro="Notre conseiller vous accompagne dans la découverte de Luxury Living et la sélection de votre future adresse."
+        image={hero}
       />
 
       <section className="container-luxe py-20 grid lg:grid-cols-12 gap-12 lg:gap-16">
@@ -94,7 +96,7 @@ const Contact = () => {
             <Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="text-xs text-muted-foreground pt-2">
-            En soumettant ce formulaire, vous acceptez d'être contacté par un conseiller Khazef.
+            En soumettant ce formulaire, vous acceptez d'être contacté par un conseiller Luxury Living.
           </p>
         </form>
 
@@ -130,7 +132,7 @@ const Contact = () => {
 
           <div className="aspect-[4/3] overflow-hidden border border-border shadow-luxe-sm">
             <iframe
-              title="Plan d'accès Khazef"
+              title="Plan d'accès Luxury Living"
               src="https://www.openstreetmap.org/export/embed.html?bbox=-9.27%2C32.28%2C-9.21%2C32.32&layer=mapnik&marker=32.30,-9.24"
               className="h-full w-full grayscale-[20%]"
               loading="lazy"

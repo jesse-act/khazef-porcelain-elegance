@@ -14,7 +14,7 @@ import zellige from "@/assets/material-zellige.jpg";
 import marble from "@/assets/material-marble.jpg";
 
 const images = [
-  { src: hero, alt: "Façade Khazef au coucher du soleil", span: "md:col-span-2 md:row-span-2" },
+  { src: hero, alt: "Façade de la résidence au coucher du soleil", span: "md:col-span-2 md:row-span-2" },
   { src: living, alt: "Salon luxueux", span: "" },
   { src: bedroom, alt: "Chambre parentale", span: "" },
   { src: kitchen, alt: "Cuisine en marbre", span: "md:col-span-2" },
@@ -30,12 +30,13 @@ const Gallery = () => {
 
   return (
     <>
-      <Seo title="Galerie" description="Galerie d'images et de vidéos de la résidence Khazef à Safi." />
+      <Seo title="Galerie" description="Galerie d'images et de vidéos de la résidence Luxury Living à Safi." />
       <PageHeader
         eyebrow="Galerie"
         arabic="المعرض"
-        title="Khazef,"
+        title="Luxury Living,"
         italicWord="image après image."
+        image={hero}
       />
 
       <section className="container-luxe py-16 md:py-24">
@@ -50,7 +51,9 @@ const Gallery = () => {
                 src={img.src}
                 alt={img.alt}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110"
-                loading="lazy"
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                decoding="async"
               />
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors" />
               <div className="absolute inset-x-0 bottom-0 p-4 text-secondary opacity-0 group-hover:opacity-100 transition-opacity">

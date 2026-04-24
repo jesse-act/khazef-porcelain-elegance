@@ -8,7 +8,7 @@ interface SeoProps {
 
 const Seo = ({ title, description, canonical }: SeoProps) => {
   useEffect(() => {
-    const fullTitle = `${title} · Khazef — Safi, Maroc`;
+    const fullTitle = `${title} · Luxury Living — Safi, Maroc`;
     document.title = fullTitle;
 
     const setMeta = (name: string, content: string) => {

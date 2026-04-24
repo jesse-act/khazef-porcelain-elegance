@@ -35,8 +35,8 @@ const Home = () => {
   return (
     <>
       <Seo
-        title="Khazef — Résidence de prestige à Safi"
-        description="Khazef · L'art de vivre, ciselé dans la pierre. Résidence R+6 de 25 appartements à Safi, Maroc."
+        title="Luxury Living — Résidence de prestige à Safi"
+        description="Luxury Living · L'art de vivre, ciselé dans la pierre. Résidence R+6 de 25 appartements à Safi, Maroc."
       />
 
       {/* HERO */}
@@ -47,24 +47,36 @@ const Home = () => {
           className="absolute inset-0 h-full w-full object-cover animate-slow-pan"
           width={1920}
           height={1080}
+          loading="eager"
+          fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/20 to-primary/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/50 to-primary/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-primary/15 to-transparent md:to-primary/0" />
         <div className="absolute inset-0 pattern-zellige opacity-20" />
 
-        <div className="container-luxe relative h-full flex flex-col justify-end pb-24 md:pb-32 text-secondary">
+        <div className="container-luxe relative h-full flex flex-col justify-end pb-24 md:pb-32 text-white">
           <div className="flex items-center gap-4 mb-8 animate-fade-in">
             <span className="h-px w-16 bg-gold" />
-            <span className="eyebrow text-gold">Safi · Maroc · 2025</span>
+            <span className="eyebrow text-gold" style={{ textShadow: "0 1px 3px hsl(var(--primary) / 0.7)" }}>Safi · Maroc · 2025</span>
           </div>
 
-          <h1 className="h-hero text-secondary max-w-5xl text-balance animate-fade-in" style={{ animationDelay: "0.15s" }}>
+          <h1
+            className="h-hero text-white max-w-5xl text-balance animate-fade-in"
+            style={{
+              animationDelay: "0.15s",
+              textShadow: "0 2px 18px hsl(var(--primary) / 0.7), 0 1px 3px hsl(var(--primary) / 0.85)",
+            }}
+          >
             L'art de vivre,
             <br />
             <em className="font-light text-gold-bright">ciselé dans la pierre.</em>
           </h1>
 
           <div className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-8 animate-fade-in" style={{ animationDelay: "0.35s" }}>
-            <p className="max-w-md text-secondary/85 font-light text-lg leading-relaxed">
+            <p
+              className="max-w-md text-white/90 font-light text-lg leading-relaxed"
+              style={{ textShadow: "0 1px 6px hsl(var(--primary) / 0.8)" }}
+            >
               Khazef — <span className="arabic text-gold">خَزَف</span> — est une résidence confidentielle de 25 appartements, signée par l'élégance méditerranéenne et le savoir-faire de la porcelaine.
             </p>
             <div className="flex flex-wrap gap-4">

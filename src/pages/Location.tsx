@@ -16,7 +16,7 @@ const amenities = [
 const Location = () => {
   return (
     <>
-      <Seo title="Emplacement" description="Khazef — au cœur de Safi, entre océan, médina et collines minérales." />
+      <Seo title="Emplacement" description="Luxury Living — au cœur de Safi, entre océan, médina et collines minérales." />
       <PageHeader
         eyebrow="Emplacement"
         arabic="الموقع"
@@ -72,7 +72,7 @@ const Location = () => {
         </div>
         <div className="md:col-span-6 md:col-start-7 space-y-5 text-muted-foreground font-light text-lg leading-relaxed">
           <p>Safi cultive un rythme rare : celui d'une ville d'art, lente, méditative, ouverte sur l'océan.</p>
-          <p>Les terrasses des cafés y voisinent avec les ateliers de potiers, les criques sauvages avec les places ombragées. Vivre à Khazef, c'est habiter ce tempo.</p>
+          <p>Les terrasses des cafés y voisinent avec les ateliers de potiers, les criques sauvages avec les places ombragées. Vivre à Luxury Living, c'est habiter ce tempo.</p>
         </div>
       </section>
 

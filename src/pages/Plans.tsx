@@ -3,6 +3,7 @@ import Seo from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 import CtaBanner from "@/components/CtaBanner";
 import { ZoomIn, X } from "lucide-react";
+import hero from "@/assets/interior-kitchen.jpg";
 
 const levels = [
   { n: "RDC", t: "Hall + 2 commerces", d: "Hall d'entrée en marbre, conciergerie, deux espaces commerciaux." },
@@ -52,13 +53,14 @@ const Plans = () => {
 
   return (
     <>
-      <Seo title="Plans" description="Plans d'étage et typologies de la résidence Khazef à Safi." />
+      <Seo title="Plans" description="Plans d'étage et typologies de la résidence Luxury Living à Safi." />
       <PageHeader
         eyebrow="Plans"
         arabic="المخططات"
         title="Sept étages,"
         italicWord="une partition précise."
         intro="Une lecture claire du bâtiment, niveau par niveau, appartement par appartement."
+        image={hero}
       />
 
       {/* PLANS GRID */}

@@ -1,7 +1,7 @@
 import Seo from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 import CtaBanner from "@/components/CtaBanner";
-import safi from "@/assets/safi-aerial.jpg";
+import hero from "@/assets/safi-coast.jpg";
 import coast from "@/assets/safi-coast.jpg";
 import pottery from "@/assets/safi-pottery.jpg";
 
@@ -15,7 +15,7 @@ const Safi = () => {
         title="Safi,"
         italicWord="le bleu et le feu."
         intro="Ville portuaire millénaire, capitale marocaine de la poterie, Safi tisse depuis toujours un dialogue rare entre la terre, l'océan et le feu."
-        image={safi}
+        image={hero}
       />
 
       {/* Storytelling */}

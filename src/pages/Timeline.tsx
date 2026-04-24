@@ -2,6 +2,7 @@ import Seo from "@/components/Seo";
 import PageHeader from "@/components/PageHeader";
 import CtaBanner from "@/components/CtaBanner";
 import { Check } from "lucide-react";
+import hero from "@/assets/hero-building.jpg";
 
 const phases = [
   { date: "T1 2024", title: "Étude & permis", desc: "Conception architecturale, dépôt et obtention du permis de construire.", done: true },
@@ -16,13 +17,14 @@ const phases = [
 const Timeline = () => {
   return (
     <>
-      <Seo title="Construction & Livraison" description="Calendrier de construction et planning de livraison de la résidence Khazef." />
+      <Seo title="Construction & Livraison" description="Calendrier de construction et planning de livraison de la résidence Luxury Living." />
       <PageHeader
         eyebrow="Construction & Livraison"
         arabic="الإنجاز"
         title="Le chantier,"
         italicWord="comme une partition tenue."
         intro="Étape après étape, Khazef avance avec rigueur. Suivez le rythme de sa construction."
+        image={hero}
       />
 
       <section className="container-luxe py-20 md:py-28">

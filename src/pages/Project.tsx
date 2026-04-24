@@ -23,7 +23,7 @@ const engagements = [
 const Project = () => {
   return (
     <>
-      <Seo title="Le projet" description="Khazef — concept architectural, matières et engagements du promoteur." />
+      <Seo title="Le projet" description="Luxury Living — concept architectural, matières et engagements du promoteur." />
       <PageHeader
         eyebrow="Le projet"
         arabic="المشروع"
