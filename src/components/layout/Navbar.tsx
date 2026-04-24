@@ -1,35 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Menu, X, ArrowUpRight, ChevronDown, ChevronRight, Phone, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 interface NavItem {
   to: string;
-  label: string;
-  arabic?: string;
+  labelKey: string;
 }
 
 /** Primary nav — always visible on desktop */
 const PRIMARY: NavItem[] = [
-  { to: "/", label: "Accueil", arabic: "الرئيسية" },
-  { to: "/project", label: "Projet", arabic: "المشروع" },
-  { to: "/apartments", label: "Appartements", arabic: "الشقق" },
-  { to: "/plans", label: "Plans", arabic: "المخططات" },
-  { to: "/virtual-tour", label: "Visite 360°", arabic: "جولة" },
-  { to: "/gallery", label: "Galerie", arabic: "معرض" },
+  { to: "/", labelKey: "nav.home" },
+  { to: "/project", labelKey: "nav.project" },
+  { to: "/apartments", labelKey: "nav.apartments" },
+  { to: "/plans", labelKey: "nav.plans" },
+  { to: "/virtual-tour", labelKey: "nav.virtualTour" },
+  { to: "/gallery", labelKey: "nav.gallery" },
 ];
 
 /** Secondary nav — grouped under a "Plus" dropdown on desktop */
 const SECONDARY: NavItem[] = [
-  { to: "/location", label: "Emplacement", arabic: "الموقع" },
-  { to: "/timeline", label: "Livraison", arabic: "التسليم" },
-  { to: "/safi", label: "Safi", arabic: "آسفي" },
+  { to: "/location", labelKey: "nav.location" },
+  { to: "/timeline", labelKey: "nav.timeline" },
+  { to: "/safi", labelKey: "nav.safi" },
 ];
 
-const ALL_NAV: NavItem[] = [...PRIMARY, ...SECONDARY, { to: "/contact", label: "Contact", arabic: "اتصل" }];
+const ALL_NAV: NavItem[] = [...PRIMARY, ...SECONDARY, { to: "/contact", labelKey: "nav.contact" }];
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -108,7 +110,7 @@ const Navbar = () => {
       )}
       <div className="container-luxe relative z-10 flex items-center justify-between h-28 md:h-32">
         {/* Brand */}
-        <Link to="/" className="flex items-center gap-4 md:gap-5 group" aria-label="Luxury Living — Accueil">
+        <Link to="/" className="flex items-center gap-4 md:gap-5 group" aria-label={`${t("brand.name")} — ${t("nav.home")}`}>
           <div className="relative h-[88px] w-[88px] md:h-[104px] md:w-[104px] flex items-center justify-center shrink-0">
             {/* Outer rotating ring — conic gradient gold, hugs the logo */}
             <span
@@ -168,21 +170,21 @@ const Navbar = () => {
               }`}
               style={onImage ? { textShadow: textShadowStrong } : undefined}
             >
-              Khazef
+              {t("brand.name")}
             </div>
             <div
               className="eyebrow text-[9px] md:text-[10px] text-gold -mt-0.5"
               style={onImage ? { textShadow: textShadowSoft } : undefined}
             >
-              Luxury Living
+              {t("brand.eyebrow")}
             </div>
           </div>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Navigation principale">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label={t("nav.primaryNavigation")}>
           {PRIMARY.map((item) => (
-            <DesktopNavLink key={item.to} item={item} onImage={onImage} />
+            <DesktopNavLink key={item.to} item={item} onImage={onImage} label={t(item.labelKey)} />
           ))}
 
           {/* "Plus" dropdown */}
@@ -201,7 +203,7 @@ const Navbar = () => {
                     : "text-primary hover:text-gold"
               }`}
             >
-              Plus
+              {t("nav.more")}
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform duration-300 ${moreOpen ? "rotate-180" : ""}`}
                 aria-hidden
@@ -223,27 +225,29 @@ const Navbar = () => {
                       }`
                     }
                   >
-                    <span>{item.label}</span>
-                    {item.arabic && <span className="arabic text-[13px] text-gold/70 normal-case tracking-normal">{item.arabic}</span>}
+                    <span>{t(item.labelKey)}</span>
                   </NavLink>
                 ))}
               </div>
             )}
           </div>
 
+          {/* Language switcher */}
+          <LanguageSwitcher onImage={onImage} />
+
           {/* CTA */}
           <Link
             to="/contact"
             className="group relative ml-2 inline-flex items-center gap-2 bg-gradient-gold-bright text-primary px-5 py-3 text-[12px] uppercase tracking-[0.22em] font-medium shadow-luxe-sm transition-all duration-500 hover:shadow-luxe-md hover:-translate-y-0.5 overflow-hidden"
           >
-            <span className="relative z-10">Visite privée</span>
+            <span className="relative z-10">{t("cta.privateVisit")}</span>
             <ArrowUpRight className="relative z-10 h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
             <span
               aria-hidden
               className="absolute inset-0 bg-primary translate-y-full transition-transform duration-500 group-hover:translate-y-0"
             />
             <span className="absolute inset-0 flex items-center justify-center gap-2 text-secondary translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
-              <span>Visite privée</span>
+              <span>{t("cta.privateVisit")}</span>
               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
             </span>
           </Link>
@@ -257,7 +261,7 @@ const Navbar = () => {
               : "border-border/70 bg-background/90 text-primary backdrop-blur-md hover:border-gold hover:text-gold"
           }`}
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={open ? t("nav.close") : t("nav.open")}
           aria-expanded={open}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -332,24 +336,24 @@ const Navbar = () => {
                 <img src={logo} alt="" className="relative z-10 h-12 w-12 object-contain" width={48} height={48} />
               </div>
               <div>
-                <div className="font-display text-xl text-primary leading-tight">Khazef</div>
-                <div className="eyebrow text-[9px] text-gold">Luxury Living</div>
+                <div className="font-display text-xl text-primary leading-tight">{t("brand.name")}</div>
+                <div className="eyebrow text-[9px] text-gold">{t("brand.eyebrow")}</div>
               </div>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Fermer"
+              aria-label={t("nav.closeShort")}
               className="p-2 text-primary hover:text-gold transition-all duration-500 hover:rotate-90"
             >
               <X className="h-5 w-5" />
             </button>
           </header>
 
-          <nav className="relative flex-1 overflow-y-auto px-6 py-6" aria-label="Navigation mobile">
+          <nav className="relative flex-1 overflow-y-auto px-6 py-6" aria-label={t("nav.mobileMenu")}>
             <div className="flex items-center gap-3 mb-4">
               <span className="gold-rule" aria-hidden />
-              <span className="eyebrow text-gold text-[10px]">Navigation</span>
+              <span className="eyebrow text-gold text-[10px]">{t("nav.navigation")}</span>
             </div>
 
             <ul className="flex flex-col">
@@ -389,14 +393,9 @@ const Navbar = () => {
                           {isActive && (
                             <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-gold shadow-[0_0_8px_hsl(var(--gold))]" />
                           )}
-                          {item.label}
+                          {t(item.labelKey)}
                         </span>
                         <span className="flex items-center gap-2">
-                          {item.arabic && (
-                            <span className="arabic text-sm text-muted-foreground opacity-70 group-hover:opacity-100 group-hover:text-gold/80 transition-opacity">
-                              {item.arabic}
-                            </span>
-                          )}
                           <ChevronRight
                             className={`h-4 w-4 transition-all duration-500 ${
                               isActive
@@ -413,11 +412,16 @@ const Navbar = () => {
               ))}
             </ul>
 
-            {/* Contact block */}
+            {/* Language */}
             <div className="mt-10 pt-6 border-t border-border/60">
+              <LanguageSwitcher variant="stack" />
+            </div>
+
+            {/* Contact block */}
+            <div className="mt-8 pt-6 border-t border-border/60">
               <div className="flex items-center gap-3 mb-4">
                 <span className="gold-rule" aria-hidden />
-                <span className="eyebrow text-gold text-[10px]">Contact direct</span>
+                <span className="eyebrow text-gold text-[10px]">{t("cta.directContact")}</span>
               </div>
               <a
                 href="tel:+212000000000"
@@ -453,12 +457,12 @@ const Navbar = () => {
                 className="absolute inset-0 bg-primary translate-y-full transition-transform duration-500 group-hover:translate-y-0"
               />
               <span className="absolute inset-0 flex items-center justify-center gap-2 text-secondary translate-y-full transition-transform duration-500 group-hover:translate-y-0 pointer-events-none">
-                <span>Réserver une visite privée</span>
+                <span>{t("cta.bookPrivateVisit")}</span>
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
               </span>
             </Link>
             <div className="mt-3 text-center eyebrow text-[9px] text-muted-foreground">
-              Sur rendez-vous · 7j/7
+              {t("cta.byAppointment")}
             </div>
           </div>
         </aside>
@@ -474,7 +478,7 @@ const Navbar = () => {
  * When `onImage` is true, text switches to white + text-shadow so it stays
  * readable over any hero photograph.
  */
-function DesktopNavLink({ item, onImage }: { item: NavItem; onImage: boolean }) {
+function DesktopNavLink({ item, onImage, label }: { item: NavItem; onImage: boolean; label: string }) {
   const shadow = "0 1px 4px hsl(var(--primary) / 0.8)";
   return (
     <NavLink
@@ -493,7 +497,7 @@ function DesktopNavLink({ item, onImage }: { item: NavItem; onImage: boolean }) 
     >
       {({ isActive }) => (
         <span className="relative">
-          {item.label}
+          {label}
           <span
             aria-hidden
             className={`absolute -bottom-1 left-0 right-0 h-px origin-left transition-transform duration-500 bg-gold ${

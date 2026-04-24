@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "name": "خَزَف",
+    "eyebrow": "لاكشري ليفينغ",
+    "subtitle": "إقامة فاخرة · آسفي"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "project": "المشروع",
+    "apartments": "الشقق",
+    "plans": "المخططات",
+    "virtualTour": "جولة افتراضية",
+    "gallery": "المعرض",
+    "location": "الموقع",
+    "timeline": "التسليم",
+    "safi": "آسفي",
+    "contact": "اتصل بنا",
+    "more": "المزيد",
+    "primaryNavigation": "القائمة الرئيسية",
+    "mobileMenu": "القائمة",
+    "open": "فتح القائمة",
+    "close": "إغلاق القائمة",
+    "closeShort": "إغلاق",
+    "navigation": "التصفح"
+  },
+  "cta": {
+    "privateVisit": "زيارة خاصة",
+    "bookPrivateVisit": "احجز زيارتك الخاصة",
+    "byAppointment": "بموعد مسبق · كل أيام الأسبوع",
+    "directContact": "اتصال مباشر",
+    "discover": "اكتشف"
+  },
+  "language": {
+    "label": "اللغة",
+    "fr": "Français",
+    "ar": "العربية",
+    "switchToFrench": "التبديل إلى الفرنسية",
+    "switchToArabic": "التبديل إلى العربية"
+  },
+  "breadcrumb": {
+    "separator": "‹"
+  },
+  "misc": {
+    "scrollIndicator": "اكتشف"
+  }
+}

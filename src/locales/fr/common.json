@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "name": "Khazef",
+    "eyebrow": "Luxury Living",
+    "subtitle": "Résidence signature · Safi"
+  },
+  "nav": {
+    "home": "Accueil",
+    "project": "Projet",
+    "apartments": "Appartements",
+    "plans": "Plans",
+    "virtualTour": "Visite 360°",
+    "gallery": "Galerie",
+    "location": "Emplacement",
+    "timeline": "Livraison",
+    "safi": "Safi",
+    "contact": "Contact",
+    "more": "Plus",
+    "primaryNavigation": "Navigation principale",
+    "mobileMenu": "Menu",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
+    "closeShort": "Fermer",
+    "navigation": "Navigation"
+  },
+  "cta": {
+    "privateVisit": "Visite privée",
+    "bookPrivateVisit": "Réserver une visite privée",
+    "byAppointment": "Sur rendez-vous · 7j/7",
+    "directContact": "Contact direct",
+    "discover": "Découvrir"
+  },
+  "language": {
+    "label": "Langue",
+    "fr": "Français",
+    "ar": "العربية",
+    "switchToFrench": "Passer au français",
+    "switchToArabic": "Passer à l'arabe"
+  },
+  "breadcrumb": {
+    "separator": "›"
+  },
+  "misc": {
+    "scrollIndicator": "Découvrir"
+  }
+}
