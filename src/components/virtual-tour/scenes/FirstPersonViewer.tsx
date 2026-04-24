@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Html } from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import { ACESFilmicToneMapping, Vector3 } from "three";
 import type { Camera, Mesh } from "three";
 
@@ -174,7 +174,6 @@ export function FirstPersonViewer({ roomId }: FirstPersonViewerProps) {
       <hemisphereLight args={["#fff4dc", "#4a5a7a", 0.4]} />
 
       <Suspense fallback={null}>
-        <Environment preset="apartment" />
         <ApartmentModel typology={typology} />
         <RoomAmbience />
       </Suspense>

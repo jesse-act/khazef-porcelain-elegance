@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { ACESFilmicToneMapping } from "three";
 
 import { ApartmentModel } from "./ApartmentModel";
@@ -45,7 +45,6 @@ export function Apartment3DScene() {
       <hemisphereLight args={["#ffeccc", "#101624", 0.18]} />
 
       <Suspense fallback={null}>
-        <Environment preset="night" />
         <ApartmentModel typology={typology} clickableFloors showCeiling={false} />
       </Suspense>
 
