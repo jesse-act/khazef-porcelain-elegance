@@ -1,0 +1,10 @@
+services:
+  khazef:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: khazef-porcelain-elegance:latest
+    container_name: khazef
+    restart: unless-stopped
+    ports:
+      - "80:80"
